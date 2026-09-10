@@ -25,15 +25,18 @@ public class ImovelRepository {
         }
         else {
             deleteById(imovel.getId());
+            imoveis.add(imovel);
         }
         return imovel;
     }
 
-    List<Imovel> findAll(){
+    public List<Imovel> findAll(){
         return imoveis;
     }
 
-    void deleteById(Long id){}
+    public void deleteById(Long id){
+        imoveis.removeIf(i -> i.getId().equals(id));
+    }
 
 
 
