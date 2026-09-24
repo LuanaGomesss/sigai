@@ -37,8 +37,4 @@ public class ImovelRepository {
     public void deleteById(Long id){
         imoveis.removeIf(i -> i.getId().equals(id));
     }
-
-
-
-
 }
