@@ -28,8 +28,8 @@ public class ImovelController {
     }
 
     @GetMapping
-    public List<Imovel> listar(){
-        return imovelService.listar();
+    public List<Imovel> listar(@RequestParam (required = false) String endereco, @RequestParam(required = false) Double valorMaximo) {
+        return imovelService.listar(endereco, valorMaximo);
     }
 
     @GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class ImovelController {
         return imovelService.buscarPorId(id);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<ImovelResponseDTO> atualizar(@PathVariable Long id, @RequestBody ImovelRequestDTO dto){
         ImovelResponseDTO atualizado = imovelService.atualizar(id, dto);
         return ResponseEntity.ok(atualizado);

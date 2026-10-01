@@ -11,13 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FotoService {
 
     private final FotoRepository fotoRepository;
-
-    public FotoService(FotoRepository fotoRepository) {
-        this.fotoRepository = fotoRepository;
-    }
 
     public FotoResponseDTO criar(FotoRequestDTO dto){
         Foto salvo = fotoRepository.save(toEntity(dto));

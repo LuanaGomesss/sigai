@@ -5,18 +5,16 @@ import com.sigai.imoveis.model.Imovel;
 import com.sigai.imoveis.model.dto.request.ImovelRequestDTO;
 import com.sigai.imoveis.model.dto.response.ImovelResponseDTO;
 import com.sigai.imoveis.repository.ImovelRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ImovelService {
 
     private final ImovelRepository imovelRepository;
-
-    public ImovelService(ImovelRepository imovelRepository) {
-        this.imovelRepository = imovelRepository;
-    }
 
     public ImovelResponseDTO criar(ImovelRequestDTO dto){
         Imovel salvo = imovelRepository.save(toEntity(dto));
@@ -59,4 +57,15 @@ public class ImovelService {
         return new ImovelResponseDTO(imovelEntity.getId(),imovelEntity.getEndereco(), imovelEntity.getValorAluguel(),imovelEntity.getDescricao());
     }
 
+    public List<Imovel> listar(String endereco, Double valorMaximo) {
+        if (endereco != null && valorMaximo != null) {
+            return imovelRepository.findByEnderecoContainingIgnoreCaseAndValorAluguelLessThanEqual(endereco, valorMaximo);
+        } else if (endereco != null) {
+            return imovelRepository.findByEnderecoContainingIgnoreCase(endereco);
+        } else if (valorMaximo != null) {
+            return imovelRepository.findByValorAluguelLessThanEqual(valorMaximo);
+        } else {
+            return imovelRepository.findAll();
+        }
+    }
 }
