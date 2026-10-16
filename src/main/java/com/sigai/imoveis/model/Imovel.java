@@ -1,10 +1,14 @@
 package com.sigai.imoveis.model;
 
+import com.sigai.imoveis.model.dto.response.FotoResponseDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +30,7 @@ public class Imovel {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @OneToMany(mappedBy = "imovel")
+    private List<Foto> fotos = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.sigai.imoveis.model.dto.response;
 
+import com.sigai.imoveis.model.Imovel;
 import lombok.*;
 
 @Getter

@@ -27,7 +27,7 @@ public class FotoController {
     }
 
     @GetMapping
-    public List<Foto> listar(){
+    public List<FotoResponseDTO> listar(){
         return fotoService.listar();
     }
 

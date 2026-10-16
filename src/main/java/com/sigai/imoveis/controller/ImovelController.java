@@ -28,8 +28,8 @@ public class ImovelController {
     }
 
     @GetMapping
-    public List<Imovel> listar(@RequestParam (required = false) String endereco, @RequestParam(required = false) Double valorMaximo) {
-        return imovelService.listar(endereco, valorMaximo);
+    public List<ImovelResponseDTO> listar(@RequestParam (required = false) String endereco, @RequestParam(required = false) Double valorMaximo) {
+        return imovelService.listar();
     }
 
     @GetMapping("/{id}")
